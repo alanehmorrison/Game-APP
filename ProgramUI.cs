@@ -19,23 +19,9 @@ namespace GameChallenge
 
         private void EndGame()
         {
-            var hero = _heroRepo.CharacterDetails();
-            var enemy = _enemyRepo.CharacterDetails();
-
-            if (hero.Energy == 0)
-            {
-                Console.WriteLine("Sorry mom! Your energy is 0! Better luck next time!");
-                Console.Read();
-            }
-
-            if(enemy.Energy == 0)
-            {
-                Console.WriteLine("Congrats, mom! Your toddlers energy is 0! YOU WIN!");
-                Console.Read();
-            }
-
+            Console.WriteLine( "Thank you for playing! End Game!");
             Console.Clear();
-
+          
         }
 
         private void SetUpGame()
@@ -113,15 +99,22 @@ namespace GameChallenge
                 //DO STUFF
                 PromptPlayer();
             }
+
+            if (enemy.Energy == 0){
+                enemy.IsAlive = false;
+            }
+
+            if (hero.Energy == 0)
+            {
+                hero.IsAlive = false;
+            }
+            
         }
 
         private void PromptPlayer()
         {
             var hero = _heroRepo.CharacterDetails();
             var enemy = _enemyRepo.CharacterDetails();
-
-            while (hero.IsAlive && enemy.IsAlive)
-            {
 
                 Console.WriteLine($"What would you like to do?:\n" +
                     $"1. Give the {enemy.Name} a nap.\n" +
@@ -133,7 +126,7 @@ namespace GameChallenge
                 var input = int.Parse(Console.ReadLine());
 
                 HandleBattleInput(input);
-            }
+           
         }
 
         private void HandleBattleInput(int input)
