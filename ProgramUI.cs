@@ -120,17 +120,20 @@ namespace GameChallenge
             var hero = _heroRepo.CharacterDetails();
             var enemy = _enemyRepo.CharacterDetails();
 
-            Console.WriteLine($"What would you like to do?:\n" +
-                $"1. Give the {enemy.Name} a nap.\n" +
-                $"2. Take the {enemy.Name} to the park.\n" +
-                $"3. Hide In the Pantry to drink wine. Its 5 o'clock somewhere\n" +
-                $"4. Arts and Crafts. \n" +
-                $"5. See Current Stats for {enemy.Name} and {hero.Name}"
-                );
-            var input = int.Parse(Console.ReadLine());
+            while (hero.IsAlive && enemy.IsAlive)
+            {
 
-            HandleBattleInput(input);
+                Console.WriteLine($"What would you like to do?:\n" +
+                    $"1. Give the {enemy.Name} a nap.\n" +
+                    $"2. Take the {enemy.Name} to the park.\n" +
+                    $"3. Hide In the Pantry to drink wine. Its 5 o'clock somewhere\n" +
+                    $"4. Arts and Crafts. \n" +
+                    $"5. See Current Stats for {enemy.Name} and {hero.Name}"
+                    );
+                var input = int.Parse(Console.ReadLine());
 
+                HandleBattleInput(input);
+            }
         }
 
         private void HandleBattleInput(int input)
